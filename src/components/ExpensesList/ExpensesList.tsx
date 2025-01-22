@@ -1,4 +1,6 @@
 import { Expense } from "../../types/expense.type";
+import Card from "../Card/Card";
+
 import ExpenseItem from "../ExpenseItem/ExpenseItem";
 
 interface ExpensesListProps {
@@ -7,14 +9,18 @@ interface ExpensesListProps {
 
 const ExpensesList = ({ expenses }: ExpensesListProps) => {
   return (
-    <ul className="expenses">
-      {expenses.map((expense) => (
-        <li key={expense.id}>
-          <ExpenseItem expense={expense} />
-        </li>
-      ))}
-    </ul>
+    <Card>
+      <ul style={{ listStyle: "none" }}>
+        {expenses.map((expense) => (
+          <li key={expense.id}>
+            <ExpenseItem expense={expense} />
+          </li>
+        ))}
+      </ul>
+    </Card>
   );
 };
+
+
 
 export default ExpensesList;
