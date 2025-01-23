@@ -1,17 +1,29 @@
-import { Expense } from "../../types/expense.type";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../redux/state";
+
 import Card from "../Card/Card";
-
 import ExpenseItem from "../ExpenseItem/ExpenseItem";
+import ExpensesFilter from "../ExpensesFilter/ExpensesFilter";
+import { useEffect } from "react";
+import { filtereExpenses } from "../../redux/expensesSlice";
 
-interface ExpensesListProps {
-  expenses: Expense[];
-}
 
-const ExpensesList = ({ expenses }: ExpensesListProps) => {
+const ExpensesList = () => {
+  const dispatch = useDispatch<AppDispatch>()
+
+  const { filteredExpenses } = useSelector(
+    (state: RootState) => state.expenses
+  );
+
+  useEffect(() => {
+    dispatch(filtereExpenses('all'))
+  },[dispatch])
+
   return (
     <Card>
+      <ExpensesFilter />
       <ul style={{ listStyle: "none" }}>
-        {expenses.map((expense) => (
+        {filteredExpenses.map((expense) => (
           <li key={expense.id}>
             <ExpenseItem expense={expense} />
           </li>
@@ -20,7 +32,5 @@ const ExpensesList = ({ expenses }: ExpensesListProps) => {
     </Card>
   );
 };
-
-
 
 export default ExpensesList;

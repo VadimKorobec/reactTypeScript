@@ -5,9 +5,11 @@ interface ExpenseDateProps {
 }
 
 const ExpenseDate = ({ date }: ExpenseDateProps) => {
-  const month = date.toLocaleString("en-US", { month: "long" });
-  const day = date.toLocaleString("en-US", { day: "2-digit" });
-  const year = date.getFullYear();
+  const newDate = new Date(date);
+  
+  const month = newDate.toLocaleString("en-US", { month: "long" });
+  const day = newDate.toLocaleString("en-US", { day: "2-digit" });
+  const year = newDate.getFullYear();
 
   return (
     <div className={styles.expense_date}>
