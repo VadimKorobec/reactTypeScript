@@ -1,16 +1,15 @@
 import { ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/state";
-import { filtereExpenses } from "../../redux/expensesSlice";
-
+import { setStatusFilter } from "../../redux/filtersSlice";
 
 import styles from "./ExpensesFilter.module.css";
 
 const ExpensesFilter = () => {
-  const dispatch = useDispatch<AppDispatch>()
-  
+  const dispatch = useDispatch<AppDispatch>();
+
   const handlerChangeDropdown = (e: ChangeEvent<HTMLSelectElement>) => {
-    dispatch(filtereExpenses(e.target.value))
+    dispatch(setStatusFilter(e.target.value));
   };
 
   return (

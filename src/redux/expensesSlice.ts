@@ -3,7 +3,6 @@ import { Expense } from "../types/expense.type";
 
 export interface ExpensesState {
   expenses: Expense[];
-  filteredExpenses: Expense[];
 }
 
 const initialState: ExpensesState = {
@@ -28,10 +27,9 @@ const initialState: ExpensesState = {
       date: "2025-05-12",
     },
   ],
-  filteredExpenses:[],
 };
 
-export const expensesSlice = createSlice({
+const expensesSlice = createSlice({
   name: "expenses",
   initialState,
   reducers: {
@@ -41,17 +39,8 @@ export const expensesSlice = createSlice({
         expenses: [...state.expenses, action.payload],
       };
     },
-    filtereExpenses: (state, action: PayloadAction<string>) => {
-       if (action.payload === "all") {
-         state.filteredExpenses = [...state.expenses];
-       } else {
-         state.filteredExpenses = state.expenses.filter((item) =>
-           item.date.includes(action.payload)
-         );
-       }
-    },
   },
 });
 
-export const { addExpenses,filtereExpenses } = expensesSlice.actions;
+export const { addExpenses } = expensesSlice.actions;
 export const expensesReducer = expensesSlice.reducer;
