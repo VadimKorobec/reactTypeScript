@@ -11,7 +11,7 @@ const ExpenseForm = () => {
   const amountRef = useRef<HTMLInputElement>(null);
   const dateRef = useRef<HTMLInputElement>(null);
 
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useDispatch<AppDispatch>();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -22,9 +22,8 @@ const ExpenseForm = () => {
         amount: Number(amountRef.current.value),
         date: dateRef.current.value,
       };
-      console.log(expenseDate)
 
-      dispatch(addExpenses(expenseDate))
+      dispatch(addExpenses(expenseDate));
       reset();
     }
   };
